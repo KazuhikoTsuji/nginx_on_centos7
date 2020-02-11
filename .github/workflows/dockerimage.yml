@@ -12,6 +12,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag $MYREPO/myimage:01
-      run: curl -k -u $TL_USER:$TL_PW --output ./twistcli $TL_CONSOLE/api/v1/util/twistcli
-      run: chmod a+x ./twistcli
-      run: ./twistcli images scan --details -address $TL_CONSOLE -u $TL_USER -p $TL_PW --vulnerability-threshold high --compliance-threshold high --only-fixed $MYREPO/myimage:01
+    - name: Scan the Docker image
+      run: |
+        curl -k -u $TL_USER:$TL_PW --output ./twistcli $TL_CONSOLE/api/v1/util/twistcli
+        chmod a+x ./twistcli
+        ./twistcli images scan --details -address $TL_CONSOLE -u $TL_USER -p $TL_PW --vulnerability-threshold high --compliance-threshold high --only-fixed $MYREPO/myimage:01
