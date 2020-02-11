@@ -21,5 +21,5 @@ jobs:
         ./twistcli images scan --details -address $TL_CONSOLE -u $TL_USER -p $TL_PW --vulnerability-threshold high --compliance-threshold high --only-fixed $MYREPO/myimage:01
       env:
         TL_USER: ${{ secrets.TL_USER }}
-        TL_PW: ${{ secrets.TL_PE }}
+        TL_PW: ${{ secrets.TL_PW }}
         TL_CONSOLE: ${{ secrets.TL_CONSOLE }}         
