@@ -22,4 +22,5 @@ jobs:
       env:
         TL_USER: ${{ secrets.TL_USER }}
         TL_PW: ${{ secrets.TL_PW }}
-        TL_CONSOLE: ${{ secrets.TL_CONSOLE }}         
+        TL_CONSOLE: ${{ secrets.TL_CONSOLE }}
+        MYREPO: ${{ secrets.MYREPO }}      
