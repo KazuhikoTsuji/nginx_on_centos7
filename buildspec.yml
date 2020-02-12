@@ -16,6 +16,13 @@ phases:
       - echo Building the Docker image...
       - docker build -t $REPOSITORY_URI:latest .
       - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+  image_scan:
+    commands:
+      - echo Scanning docker image...
+      - curl -k -u $TL_USER:$TL_PW --output ./twistcli $TL_CONSOLE/api/v1/util/twistcli
+      - chmod a+x ./twistcli
+      - ./twistcli images scan --details -address $TL_CONSOLE -u $TL_USER -p $TL_PW --vulnerability-threshold critical --compliance-threshold critical $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+          
   post_build:
     commands:
       - echo Build completed on `date`
